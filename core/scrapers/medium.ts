@@ -16,7 +16,7 @@ export class MediumScraper implements IScraper {
     const author = await page.locator('[data-testid="authorName"]').textContent() || '';
     const content = await page.locator('article').innerHTML();
     const images = await page.evaluate(() => 
-      Array.from(document.querySelectorAll('article img')).map(img => img.src)
+      Array.from(document.querySelectorAll('article img')).map(img => (img as HTMLImageElement).src)
     );
 
     await browser.close();
