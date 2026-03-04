@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>SmartClipper 预览</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      padding: 20px;
+      background: #f5f5f7;
+    }
+    .controls {
+      max-width: 680px;
+      margin: 0 auto 20px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 1px solid #ddd; }
+    button { padding: 10px 20px; border: none; border-radius: 8px; background: #007aff; color: white; cursor: pointer; margin-right: 10px; }
+    iframe { width: 100%; height: 80vh; border: none; border-radius: 12px; }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <input type="text" id="url" placeholder="输入网页 URL">
+    <div>
+      <button onclick="preview('light')">明亮</button>
+      <button onclick="preview('dark')">深色</button>
+      <button onclick="preview('sepia')">护眼</button>
+    </div>
+  </div>
+  <iframe id="preview"></iframe>
+  <script>
+    async function preview(theme) {
+      const url = document.getElementById('url').value;
+      const res = await fetch('http://localhost:3000/api/preview', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url, theme })
+      });
+      const html = await res.text();
+      document.getElementById('preview').srcdoc = html;
+    }
+  </script>
+</body>
+</html>
