@@ -9,6 +9,10 @@ app.use(express.json());
 
 const scraperFactory = new ScraperFactory();
 
+app.get('/api/supported-sites', (req, res) => {
+  res.json({ sites: scraperFactory.getSupportedSites() });
+});
+
 app.post('/api/clip', async (req, res) => {
   try {
     const { url, notionApiKey, notionDbId } = req.body;
