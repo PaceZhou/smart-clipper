@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { width: 200px; padding: 16px; font-family: -apple-system, sans-serif; }
+    button { width: 100%; padding: 10px; margin: 5px 0; border: none; border-radius: 8px; cursor: pointer; }
+    .light { background: #FAFAF8; color: #1D1D1F; }
+    .dark { background: #1C1C1E; color: #E5E5E7; }
+    .sepia { background: #F4ECD8; color: #5B4636; }
+  </style>
+</head>
+<body>
+  <h3>阅读模式</h3>
+  <button class="light" onclick="changeTheme('light')">明亮</button>
+  <button class="dark" onclick="changeTheme('dark')">深色</button>
+  <button class="sepia" onclick="changeTheme('sepia')">护眼</button>
+  <script src="popup.js"></script>
+</body>
+</html>
