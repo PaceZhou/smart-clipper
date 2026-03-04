@@ -10,8 +10,9 @@ export class UniversalScraper implements IScraper {
     const browser = await chromium.launch({ headless: config.headless ?? true });
     const page = await browser.newPage();
 
+    // 等待 JS 重定向完成
     await page.goto(config.url, { waitUntil: 'networkidle', timeout: config.timeout ?? 30000 });
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(2000); // 等待 JS 执行
 
     // 智能提取标题
     const title = await this.extractTitle(page);
